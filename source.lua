@@ -25,12 +25,12 @@ OrionLib:MakeNotification({
 })
 
 Combat:AddButton({
-    Name = "Reach",
+    Name = "Rage Reach",
     Callback = function()
         local equippedTool = character:FindFirstChildOfClass("Tool")
         if equippedTool and equippedTool:FindFirstChild("Glove") then
             equippedTool.Glove.Transparency = 0.35
-            equippedTool.Glove.Size = Vector3.new(25, 25, 25)
+            equippedTool.Glove.Size = Vector3.new(75, 25, 75)
         else
             warn("Glove not found in equipped tool!")
         end
