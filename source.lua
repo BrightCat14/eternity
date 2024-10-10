@@ -69,7 +69,6 @@ Visual:AddColorpicker({
 			local Lighting = game:GetService("Lighting")
 			Lighting.Ambient = Value
 			Lighting.OutdoorAmbient = Value
-			Lighting.ColorShift_Topbar = Value
 
 	end	  
 })
