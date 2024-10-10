@@ -7,17 +7,6 @@ local character = player.Character or player.CharacterAdded:Wait()
 local glow = 0
 local equippedTool = character:FindFirstChildOfClass("Tool")
 
--- Проверяем, есть ли инструмент
-if equippedTool then
-    -- Создаем SurfaceLight и настраиваем его
-    local surfaceLight = Instance.new("SurfaceLight")
-    surfaceLight.Parent = equippedTool -- Присоединяем SurfaceLight к Part
-    surfaceLight.Color = Color3.fromRGB(255, 255, 0) -- Устанавливаем цвет света (желтый)
-    surfaceLight.Brightness = glow -- Устанавливаем яркость света
-    surfaceLight.Range = 10 -- Устанавливаем радиус света
-    surfaceLight.Face = Enum.NormalId.Top -- Устанавливаем, на какую сторону добавляем свет
-end
-
 local Combat = Window:MakeTab({
     Name = "Combat",
     Icon = "rbxassetid://4483345998",
@@ -47,6 +36,7 @@ Combat:AddButton({
         end
     end    
 })
+
 Combat:AddToggle({
 	Name = "Slap aura",
 	Default = false,
