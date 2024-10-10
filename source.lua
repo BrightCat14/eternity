@@ -1,12 +1,14 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Eternity", HidePremium = false, SaveConfig = true, ConfigFolder = "Eternity"})
 
+local TVTextLabel = game.Workspace.Lobby.TV.Screen.SurfaceGui.TextLabel
 local player = game.Players.LocalPlayer
 local playername = player.Name
 local character = player.Character or player.CharacterAdded:Wait()
 local glow = 0
 local equippedTool = character:FindFirstChildOfClass("Tool")
 
+TVTextLabel.Text = "get good get eternity"
 local Combat = Window:MakeTab({
     Name = "Combat",
     Icon = "rbxassetid://4483345998",
