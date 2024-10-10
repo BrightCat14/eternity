@@ -49,21 +49,19 @@ Combat:AddButton({
 })
 
 Visual:AddLabel("Glove")
-Visual:AddSlider({
-    Name = "Glow",
-    Min = 0,
-    Max = 20,
-    Default = 0,
-    Color = Color3.fromRGB(255, 255, 255),
-    Increment = 1,
-    ValueName = "Glow",
-    Callback = function(Value)
-        glow = Value
-        if equippedTool and equippedTool:FindFirstChild("SurfaceLight") then
-            equippedTool.SurfaceLight.Brightness = glow -- Обновляем яркость SurfaceLight
+Visual:AddColorpicker({
+	Name = "Colorpicker",
+	Default = Color3.fromRGB(255, 0, 0),
+	Callback = function(Value)
+        local equippedTool = character:FindFirstChildOfClass("Tool")
+        if equippedTool and equippedTool:FindFirstChild("Glove") then
+		    equippedTool.Glove.Color = Value
+        else
+            warn("Glove not found in equipped tool!")
         end
-    end    
+	end	  
 })
+
 
 OrionLib:Init()
 -- destroying the interface: OrionLib:Destroy()
