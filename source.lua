@@ -47,7 +47,34 @@ Combat:AddButton({
         end
     end    
 })
+Combat:addToggle(
+    "",
+    function(SlapAura)
 
+    end
+)
+Tab:AddToggle({
+	Name = "Slap aura",
+	Default = false,
+	Callback = function(Value)
+			
+        if Value == true then
+            spawn(
+                function()
+                    while Value do
+                        for _, ok in ipairs(workspace:GetChildren()) do
+                            if ok:FindFirstChild("Humanoid") then
+                                game:GetService("ReplicatedStorage").Events.Slap:FireServer(ok.Torso)
+                                wait(0.01)
+                            end
+                        end
+                    end
+                end
+            )
+        end
+			
+	end    
+})
 Visual:AddLabel("Glove")
 Visual:AddColorpicker({
 	Name = "Color",
