@@ -50,7 +50,7 @@ Combat:AddButton({
 
 Visual:AddLabel("Glove")
 Visual:AddColorpicker({
-	Name = "Colorpicker",
+	Name = "Color",
 	Default = Color3.fromRGB(255, 0, 0),
 	Callback = function(Value)
         local equippedTool = character:FindFirstChildOfClass("Tool")
@@ -61,7 +61,18 @@ Visual:AddColorpicker({
         end
 	end	  
 })
+Visual:AddLabel("World")
+Visual:AddColorpicker({
+	Name = "Color",
+	Default = Color3.fromRGB(255, 0, 0),
+	Callback = function(Value)
+			local Lighting = game:GetService("Lighting")
+			Lighting.Ambient = Value
+			Lighting.OutdoorAmbient = Value
+			Lighting.ColorShift_Topbar = Value
 
+	end	  
+})
 
 OrionLib:Init()
 -- destroying the interface: OrionLib:Destroy()
