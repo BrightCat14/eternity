@@ -36,14 +36,6 @@ Combat:AddButton({
         end
     end    
 })
-
-Combat:AddToggle({
-	Name = "Slap aura",
-	Default = false,
-	Callback = function(Value)
-
-	end    
-})
 Combat:AddToggle({
 	Name = "This is a toggle!",
 	Default = false,
