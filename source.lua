@@ -37,22 +37,25 @@ Combat:AddButton({
     end    
 })
 Combat:AddToggle({
-	Name = "This is a toggle!",
+	Name = "Slap aura",
 	Default = false,
 	Callback = function(Value)
-        		if Value == true then
-            			spawn(
-                			function()
-                    				while Value do
-                        				for _, ok in ipairs(workspace:GetChildren()) do
-                            					if ok:FindFirstChild("Humanoid") then
-                                				game:GetService("ReplicatedStorage").Events.Slap:FireServer(ok.Torso)
-                                				wait(0.01)
-                            				end
-                        			end
-                    			end
-            			)
-        		end
+			
+        if Value == true then
+            spawn(
+                function()
+                    while Value do
+                        for _, ok in ipairs(workspace:GetChildren()) do
+                            if ok:FindFirstChild("Humanoid") then
+                                game:GetService("ReplicatedStorage").Events.Slap:FireServer(ok.Torso)
+                                wait(0.01)
+                            end
+                        end
+                    end
+                end
+            )
+        end
+			
 	end    
 })
 
