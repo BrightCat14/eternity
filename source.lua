@@ -1,3 +1,19 @@
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+
+game:GetService("GuiService"):ClearError()
+local bypass;
+bypass = hookmetamethod(game, "__namecall", function(method, ...) 
+if getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Ban then
+        return
+elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.AdminGUI then
+        return
+elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.WalkSpeedChanged then
+        return
+end
+return bypass(method, ...)
+end)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Eternity", HidePremium = false, SaveConfig = true, ConfigFolder = "Eternity"})
 
@@ -9,16 +25,25 @@ local glow = 0
 local equippedTool = character:FindFirstChildOfClass("Tool")
 
 TVTextLabel.Text = "get good get eternity"
+
 local Combat = Window:MakeTab({
     Name = "Combat",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
+
 local Visual = Window:MakeTab({
     Name = "Visual",
     Icon = "rbxassetid://18619995896",
     PremiumOnly = false
 })
+
+local Bypass = Window:MakeTab({
+    Name = "Bypass",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
 OrionLib:MakeNotification({
     Name = "Eternity",
     Content = "Hi, " .. playername .. ", glad to see you",
@@ -26,20 +51,7 @@ OrionLib:MakeNotification({
     Time = 5
 })
 
-Combat:AddButton({
-    Name = "Rage Reach",
-    Callback = function()
-	local player = game.Players.LocalPlayer
-	local character = player.Character or player.CharacterAdded:Wait()
-        local equippedTool = character:FindFirstChildOfClass("Tool")
-        if equippedTool and equippedTool:FindFirstChild("Glove") then
-            equippedTool.Glove.Transparency = 0.35
-            equippedTool.Glove.Size = Vector3.new(125, 50, 125)
-        else
-            warn("Glove not found in equipped tool!")
-        end
-    end    
-})
+
 Combat:AddToggle({
 	Name = "Slap aura",
 	Default = false,
@@ -63,7 +75,34 @@ Combat:AddToggle({
 			
 	end    
 })
-
+Bypass:AddButton({
+    Name = "Rage Reach",
+    Callback = function()
+	local player = game.Players.LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
+        local equippedTool = character:FindFirstChildOfClass("Tool")
+        if equippedTool and equippedTool:FindFirstChild("Glove") then
+            equippedTool.Glove.Transparency = 0.35
+            equippedTool.Glove.Size = Vector3.new(25, 50, 125)
+        else
+            warn("Glove not found in equipped tool!")
+        end
+    end    
+})
+Bypass:AddButton({
+    Name = "Legit Reach",
+    Callback = function()
+	local player = game.Players.LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
+        local equippedTool = character:FindFirstChildOfClass("Tool")
+        if equippedTool and equippedTool:FindFirstChild("Glove") then
+            equippedTool.Glove.Transparency = 0.35
+            equippedTool.Glove.Size = Vector3.new(3.5, 3.5, 1.9)
+        else
+            warn("Glove not found in equipped tool!")
+        end
+    end    
+})
 
 OrionLib:Init()
 -- destroying the interface: OrionLib:Destroy()
