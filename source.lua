@@ -29,10 +29,12 @@ OrionLib:MakeNotification({
 Combat:AddButton({
     Name = "Rage Reach",
     Callback = function()
+	local player = game.Players.LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()
         local equippedTool = character:FindFirstChildOfClass("Tool")
         if equippedTool and equippedTool:FindFirstChild("Glove") then
             equippedTool.Glove.Transparency = 0.35
-            equippedTool.Glove.Size = Vector3.new(75, 25, 75)
+            equippedTool.Glove.Size = Vector3.new(125, 50, 125)
         else
             warn("Glove not found in equipped tool!")
         end
@@ -42,7 +44,8 @@ Combat:AddToggle({
 	Name = "Slap aura",
 	Default = false,
 	Callback = function(Value)
-			
+	local player = game.Players.LocalPlayer
+	local character = player.Character or player.CharacterAdded:Wait()		
         if Value == true then
             spawn(
                 function()
