@@ -2,6 +2,34 @@ if not game:IsLoaded() then
     game.Loaded:Wait()
 end
 
+-- Инициализация генератора случайных чисел
+math.randomseed(os.time())
+
+-- Функция для генерации случайного слова заданной длины
+local function randomWord(length)
+    local letters = 'abcdefghijklmnopqrstuvwxyz'
+    local word = ''
+    for i = 1, length do
+        local index = math.random(1, #letters)
+        word = word .. letters:sub(index, index)
+    end
+    return word
+end
+
+-- Функция для генерации случайной цифры
+local function randomDigit()
+    return math.random(0, 9)
+end
+
+-- Функция для создания случайного слова с добавлением случайных цифр
+local function randomWordWithDigits(wordLength, digitCount)
+    local word = randomWord(wordLength)
+    for i = 1, digitCount do
+        word = word .. randomDigit()  -- Добавляем случайную цифру
+    end
+    return word
+end
+
 game:GetService("GuiService"):ClearError()
 --local bypass;
 --bypass = hookmetamethod(game, "__namecall", function(method, ...) 
@@ -14,8 +42,18 @@ game:GetService("GuiService"):ClearError()
 --end
 --return bypass(method, ...)
 --end)
+
+--local soundUrl = "https://github.com/BrightCat14/eternity/raw/refs/heads/main/SteosVoice%20141683.mp3"
+--local soundFile = game:HttpGet(soundUrl, true)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Eternity", HidePremium = false, SaveConfig = true, ConfigFolder = "Eternity"})
+--local welcomesound = Instance.new("Sound")
+--local wordLength = 5  -- Длина слова
+--local digitCount = 3   -- Количество цифр
+--local bypassword = randomWordWithDigits(wordLength, digitCount)
+--welcomesound.SoundId = soundFile
+--welcomesound.Parent = game.ReplicatedStorage
+--welcomesound.Name = bypassword
 
 local TVTextLabel = game.Workspace.Lobby.TV.Screen.SurfaceGui.TextLabel
 local player = game.Players.LocalPlayer
@@ -44,6 +82,7 @@ local Bypass = Window:MakeTab({
     PremiumOnly = false
 })
 
+--welcomesound:Play()
 OrionLib:MakeNotification({
     Name = "Eternity",
     Content = "Hi, " .. playername .. ", glad to see you",
@@ -103,6 +142,10 @@ Bypass:AddButton({
         end
     end    
 })
+
+game:GetService("RunService").Heartbeat:Connect(function()
+    TVTextLabel.Text = "get good get eternity"
+end)
 
 OrionLib:Init()
 -- destroying the interface: OrionLib:Destroy()
