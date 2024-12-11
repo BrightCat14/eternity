@@ -82,8 +82,8 @@ Bypass:AddButton({
 	local character = player.Character or player.CharacterAdded:Wait()
         local equippedTool = character:FindFirstChildOfClass("Tool")
         if equippedTool and equippedTool:FindFirstChild("Glove") then
-            equippedTool.Glove.Transparency = 0.35
-            equippedTool.Glove.Size = Vector3.new(25, 50, 125)
+                   equippedTool.Glove.Transparency = 0.75
+       		   equippedTool.Glove.Size = Vector3.new(10, 30, 45.00500505050)
         else
             warn("Glove not found in equipped tool!")
         end
