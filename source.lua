@@ -3,17 +3,17 @@ if not game:IsLoaded() then
 end
 
 game:GetService("GuiService"):ClearError()
-local bypass;
-bypass = hookmetamethod(game, "__namecall", function(method, ...) 
-if getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Ban then
-        return
-elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.AdminGUI then
-        return
-elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.WalkSpeedChanged then
-        return
-end
-return bypass(method, ...)
-end)
+--local bypass;
+--bypass = hookmetamethod(game, "__namecall", function(method, ...) 
+--if getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.Ban then
+--        return
+--elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.AdminGUI then
+--        return
+--elseif getnamecallmethod() == "FireServer" and method == game.ReplicatedStorage.WalkSpeedChanged then
+--        return
+--end
+--return bypass(method, ...)
+--end)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window = OrionLib:MakeWindow({Name = "Eternity", HidePremium = false, SaveConfig = true, ConfigFolder = "Eternity"})
 
