@@ -45,7 +45,7 @@ game:GetService("GuiService"):ClearError()
 
 --local soundUrl = "https://github.com/BrightCat14/eternity/raw/refs/heads/main/SteosVoice%20141683.mp3"
 --local soundFile = game:HttpGet(soundUrl, true)
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/BrightCat14/eternity/refs/heads/main/orion.lua')))()
 local Window = OrionLib:MakeWindow({Name = "Eternity", HidePremium = false, SaveConfig = true, ConfigFolder = "Eternity"})
 --local welcomesound = Instance.new("Sound")
 --local wordLength = 5  -- Длина слова
@@ -82,6 +82,12 @@ local Bypass = Window:MakeTab({
     PremiumOnly = false
 })
 
+local Misc = Window:MakeTab({
+    Name = "Misc",
+    Icon = "rbxassetid://18619995896",
+    PremiumOnly = false
+})
+
 --welcomesound:Play()
 OrionLib:MakeNotification({
     Name = "Eternity",
@@ -97,20 +103,6 @@ Combat:AddToggle({
 	Callback = function(Value)
 	local player = game.Players.LocalPlayer
 	local character = player.Character or player.CharacterAdded:Wait()		
-        if Value == true then
-            spawn(
-                function()
-                    while Value do
-                        for _, ok in ipairs(workspace:GetChildren()) do
-                            if ok:FindFirstChild("Humanoid") then
-                                game:GetService("ReplicatedStorage").Events.Slap:FireServer(ok.Torso)
-                                wait(0.01)
-                            end
-                        end
-                    end
-                end
-            )
-        end
 			
 	end    
 })
@@ -122,7 +114,7 @@ Bypass:AddButton({
         local equippedTool = character:FindFirstChildOfClass("Tool")
         if equippedTool and equippedTool:FindFirstChild("Glove") then
                    equippedTool.Glove.Transparency = 0.75
-       		   equippedTool.Glove.Size = Vector3.new(10, 30, 45.00500505050)
+       		    equippedTool.Glove.Size = Vector3.new(40, 80, 40)
         else
             warn("Glove not found in equipped tool!")
         end
@@ -136,12 +128,79 @@ Bypass:AddButton({
         local equippedTool = character:FindFirstChildOfClass("Tool")
         if equippedTool and equippedTool:FindFirstChild("Glove") then
             equippedTool.Glove.Transparency = 0.35
-            equippedTool.Glove.Size = Vector3.new(3.5, 3.5, 1.9)
+            equippedTool.Glove.Size = Vector3.new(3.5, 6, 1.9)
         else
             warn("Glove not found in equipped tool!")
         end
     end    
 })
+Misc:AddToggle({
+    Name = "Fps boost",
+    Default = false,
+    Callback = function(Value)
+        local player = game.Players.LocalPlayer
+        local character = player.Character or player.CharacterAdded:Wait()
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local camera = workspace.CurrentCamera
+
+-- Настройки LOD
+local closeDistance = 50    -- Расстояние для высокого качества
+local mediumDistance = 150  -- Расстояние для среднего качества
+local farDistance = 300     -- Расстояние, после которого объект скрывается
+
+-- Функция для обновления состояния объектов
+local function updateLOD()
+    if Value == true then
+        for _, object in ipairs(workspace.Objects:GetChildren()) do
+            if object:IsA("Model") or object:IsA("Part") then
+                local distance = (object.Position - camera.CFrame.Position).Magnitude
+
+                if distance <= closeDistance then
+                    -- Высокое качество
+                    object.Transparency = 0
+                    if object:FindFirstChild("Texture") then
+                        object.Texture.Texture = "HighQualityTexture" -- Пример замены текстуры
+                    end
+                elseif distance <= mediumDistance then
+                    -- Среднее качество
+                    object.Transparency = 0.5
+                    if object:FindFirstChild("Texture") then
+                        object.Texture.Texture = "MediumQualityTexture"
+                    end
+                elseif distance > farDistance then
+                    -- Скрыть объект
+                    object.Transparency = 1
+                end
+            end
+        end
+    else
+        -- Если Value == false, вернем все объекты в нормальное состояние
+        for _, object in ipairs(workspace.Objects:GetChildren()) do
+            if object:IsA("Model") or object:IsA("Part") then
+                object.Transparency = 0 -- Снять прозрачность
+                if object:FindFirstChild("Texture") then
+                    object.Texture.Texture = "DefaultTexture" -- Вернуть стандартную текстуру
+                end
+            end
+        end
+    end
+end
+
+-- Настройка глобального качества рендера
+if Value == true then
+    settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+elseif Value == false then
+    settings().Rendering.QualityLevel = Enum.QualityLevel.Automatic
+end
+
+-- Постоянное обновление LOD
+--[[
+game:GetService("RunService").RenderStepped:Connect(updateLOD)
+]]--
+    end    
+})
+
 
 game:GetService("RunService").Heartbeat:Connect(function()
     TVTextLabel.Text = "get good get eternity"
