@@ -45,8 +45,8 @@ game:GetService("GuiService"):ClearError()
 
 --local soundUrl = "https://github.com/BrightCat14/eternity/raw/refs/heads/main/SteosVoice%20141683.mp3"
 --local soundFile = game:HttpGet(soundUrl, true)
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/BrightCat14/eternity/refs/heads/main/orion.lua')))()
-local Window = OrionLib:MakeWindow({Name = "Eternity", HidePremium = false, SaveConfig = true, ConfigFolder = "Eternity"})
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/BrightCat14/eternity/refs/heads/main/enternorion.lua')))()
+local Window = OrionLib:MakeWindow({Name = "Eternity", IntroText = "Eternity", HidePremium = false, SaveConfig = true, ConfigFolder = "Eternity"})
 --local welcomesound = Instance.new("Sound")
 --local wordLength = 5  -- Длина слова
 --local digitCount = 3   -- Количество цифр
