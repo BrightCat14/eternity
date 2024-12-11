@@ -600,7 +600,7 @@ function OrionLib:MakeWindow(WindowConfig)
 	local WindowAfterName = AddThemeObject(SetProps(MakeElement("Label", WindowConfig.AfterName, 14), {
     		Size = UDim2.new(1, -30, 0, 16), -- smaller size
     		Position = UDim2.new(0, 25, 0, WindowName.Position.Y.Offset + WindowName.Size.Y.Offset + 5), -- position it below WindowName
-    		Font = Enum.Font.GothamLight, -- lighter font
+    		Font = Enum.Font.Gotham, -- lighter font
     		TextSize = 16 -- smaller text size
 	}), "TextDark")
 
