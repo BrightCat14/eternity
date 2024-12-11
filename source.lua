@@ -61,30 +61,6 @@ Combat:AddToggle({
 	end    
 })
 
-Visual:AddLabel("Glove")
-Visual:AddColorpicker({
-	Name = "Color",
-	Default = Color3.fromRGB(255, 0, 0),
-	Callback = function(Value)
-        local equippedTool = character:FindFirstChildOfClass("Tool")
-        if equippedTool and equippedTool:FindFirstChild("Glove") then
-		    equippedTool.Glove.Color = Value
-        else
-            warn("Glove not found in equipped tool!")
-        end
-	end	  
-})
-Visual:AddLabel("World")
-Visual:AddColorpicker({
-	Name = "Color",
-	Default = Color3.fromRGB(255, 0, 0),
-	Callback = function(Value)
-			local Lighting = game:GetService("Lighting")
-			Lighting.Ambient = Value
-			Lighting.OutdoorAmbient = Value
-
-	end	  
-})
 
 OrionLib:Init()
 -- destroying the interface: OrionLib:Destroy()
