@@ -598,10 +598,10 @@ function OrionLib:MakeWindow(WindowConfig)
 	}), "Text")
 
 	local WindowAfterName = AddThemeObject(SetProps(MakeElement("Label", WindowConfig.AfterName, 14), {
-    		Size = UDim2.new(1, -30, 0, 16), -- smaller size
-    		Position = UDim2.new(0, 25, 0, WindowName.Position.Y.Offset + WindowName.Size.Y.Offset + 5), -- position it below WindowName
-    		Font = Enum.Font.Gotham, -- lighter font
-    		TextSize = 16 -- smaller text size
+    		Size = UDim2.new(1, -30, 0, 20), -- увеличенная высота
+    		Position = UDim2.new(0, 25, 0, WindowName.Position.Y.Offset + WindowName.TextSize + 5),
+    		Font = Enum.Font.Gotham, 
+    		TextSize = 16 
 	}), "TextDark")
 
 	local WindowTopBarLine = AddThemeObject(SetProps(MakeElement("Frame"), {
